@@ -2,21 +2,26 @@ package com.lti.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name="table_report")
+@Entity
+@Table(name="table_report")
 public class Report {
 
 	@Id
 	@Column(name="report_id")
+	@GeneratedValue
 	private int reportId;
 
-	private int score;
-	private String status;
+	@Column(name="test_score")
+	private int testScore;
+	
+	@Column(name="cleared_level")
+	private int clearedLevel;
 	
 	@JoinColumn(name="user_id")
 	@OneToOne
@@ -34,20 +39,20 @@ public class Report {
 		this.reportId = reportId;
 	}
 
-	public int getScore() {
-		return score;
+	public int getTestScore() {
+		return testScore;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setTestScore(int testScore) {
+		this.testScore = testScore;
 	}
 
-	public String getStatus() {
-		return status;
+	public int getClearedLevel() {
+		return clearedLevel;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setClearedLevel(int clearedLevel) {
+		this.clearedLevel = clearedLevel;
 	}
 
 	public User getUser() {

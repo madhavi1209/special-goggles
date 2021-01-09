@@ -6,9 +6,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
+	@GeneratedValue()
 	@Column(name="user_id")
 	private int userId;
 	
@@ -35,10 +37,7 @@ public class User {
 	private LocalDate yearOfQualification;
 	
 	@OneToMany(mappedBy="user",cascade= {CascadeType.MERGE,CascadeType.PERSIST})
-	private List<CTest> tests;
-	
-	/*@OneToOne(mappedBy="user",cascade= {CascadeType.MERGE,CascadeType.PERSIST})
-	private Report report;*/
+	private List<CTest> ctests;
 
 	public int getUserId() {
 		return userId;
@@ -121,20 +120,14 @@ public class User {
 	}
 
 	public List<CTest> getTests() {
-		return tests;
+		return ctests;
 	}
 
 	public void setTests(List<CTest> tests) {
-		this.tests = tests;
+		this.ctests = tests;
 	}
-
-	/*public Report getReport() {
-		return report;
-	}
-
-	public void setReport(Report report) {
-		this.report = report;
-	}
-	*/
+	
+	
+	
 	
 }

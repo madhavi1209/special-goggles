@@ -1,13 +1,11 @@
 package com.lti.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,22 +13,23 @@ import javax.persistence.Table;
 public class Question {
 
 	@Id
+	@GeneratedValue
 	@Column(name="question_id")
 	private int questionId;
 	
 	@Column(name="question_name")
 	private String questionName;
 	
-	@Column(name="option1")
+	@Column(name="option_1")
 	private String option1;
 	
-	@Column(name="option2")
+	@Column(name="option_2")
 	private String option2;
 	
-	@Column(name="option3")
+	@Column(name="option_3")
 	private String option3;
 	
-	@Column(name="option4")
+	@Column(name="option_4")
 	private String option4;
 	
 	@Column(name="correct_answer")
@@ -42,12 +41,9 @@ public class Question {
 	@Column(name="test_level")
 	private int level;
 	
-	@JoinColumn(name="test_id")
+	@JoinColumn(name="subject_id")
 	@ManyToOne
-	private CTest test;
-
-	@OneToOne(mappedBy="question",cascade= {CascadeType.MERGE,CascadeType.PERSIST})
-	private UserAnswer userAnswer;
+	private Subject subject;
 
 	public int getQuestionId() {
 		return questionId;
@@ -121,20 +117,12 @@ public class Question {
 		this.level = level;
 	}
 
-	public CTest getTest() {
-		return test;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setTest(CTest test) {
-		this.test = test;
-	}
-
-	public UserAnswer getUserAnswer() {
-		return userAnswer;
-	}
-
-	public void setUserAnswer(UserAnswer userAnswer) {
-		this.userAnswer = userAnswer;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 	
 	
